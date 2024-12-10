@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/comp-header}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link th:href = "@{/css/login/login-register.css}" rel = "stylesheet">
+</head>
+<body>
+<article layout:fragment ="content">
+    <div class="register-background">
+        <div class="register-container">
+            <div class="register__header"> <h2>Đăng ký tài khoản</h2></div>
+            <form class="register__object-info" th:action="@{/register/confirm}" th:object="${customer}" method="post">
+                <div class="register__input-box">
+                    <label>Họ và tên:</label>
+                    <input th:field="*{lastName}" type="text" placeholder="Nhập đầy đủ họ và tên" required>
+                </div>
+                <div class="register__input-box">
+                    <label>Địa chỉ:</label>
+                    <input th:field="*{address}" type="text" placeholder="Địa chỉ" required>
+                </div>
+                <div class="register__input-box">
+                    <label>Mật khẩu:</label>
+                    <input th:field="*{password}" type="password" placeholder="Từ 8-20 ký tự," required>
+                </div>
+                <div class="register__input-box">
+                    <label>Nhập lại mật khẩu:</label>
+                    <input id="confirm-password" name="confirm-password" type="password" placeholder="Nhập lại mật khẩu" required>
+                </div>
+                <div class="register__note">
+                    <label class="register__note1"> Mật khẩu có ít nhất một chữ viết thường</label>
+                    <label class="register__note2"> Mật khẩu có ít nhất một chữ viết hoa</label>
+                    <label class="register__note3"> Mật khẩu có ít nhất một chữ số</label>
+                </div>
+                <div class="register__action">
+                    <button type="submit">Đăng ký</button></div>
+                <div class="register__message">
+                    <p th:if="${message}" th:text="${message}"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</article>
+</body>
+</html>

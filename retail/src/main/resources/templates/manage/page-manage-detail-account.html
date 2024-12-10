@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/comp-manage-header}">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link th:href = "@{/css/manage/manage-table.css}" rel = "stylesheet">
+    <link th:href = "@{/css/manage/detail-customer.css}" rel = "stylesheet">
+    <script th:src="@{/js/manage.js}"></script>
+    <title>Thêm sản phẩm mới</title>
+</head>
+<body>
+<article layout:fragment ="content">
+    <div class="manage__header">
+        <div class="manage__header-name">
+            <h2>Thông tin khách hàng</h2></div>
+    </div>
+ <!--   <form class="manage__form"  th:action="@{/manage/detail-product}" th:object="${customer}" method="post" enctype="multipart/form-data">-->
+        <div class="manage__form-top">
+            <div class="customer__info">
+                <div class="account-name__box">
+                    <label class="account__box-title">Họ và tên</label>
+                    <span class="account-name__box-span" th:text="${customer.lastName + ' ' + customer.firstName}" ></span>
+                </div>
+                <div class="account__group-box">
+                    <div class="account__group-box-left">
+                        <label class="account__box-title">Số điện thoại</label>
+                        <span class="account__inline-box-span" th:text="${customer.phone}" ></span>
+                    </div>
+                    <div class="account__group-box-right">
+                        <label class="account__box-title"> Email</label>
+                        <span class="account__inline-box-span" th:text="${customer.email}" ></span>
+                    </div>
+                </div>
+                <div class="account-address__box">
+                    <label class="account__box-title">Địa chỉ</label>
+                    <span class="account-address__box-span" th:text="${customer.address}" ></span>
+                </div>
+            </div>
+            <div class="customer__tool">
+                <div class="manage__header-tool-select">
+                    <label>
+                        <select name="fill" onchange="this.form.submit()" class="manage__header-tool-select-fill">
+                            <option value="ALL" selected="selected">Tất cả</option>
+                            <option value="CB">Đã mua hàng</option>
+                            <option value="GH">Chưa từng mua hàng</option></select>
+                    </label>
+                </div>
+                <form action="" method ="get" class="manage__header-tool-search">
+                    <label>
+                        <input type="text" class="manage__header-tool-search-input" placeholder="Tìm kiếm"></label>
+                    <button class="manage__header-tool-search-button"><i class='bx bx-search' ></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="manage__form-bottom">
+            <div class="manage__table">
+                <table class="invoice-table">
+                    <thead>
+                    <tr>
+                        <th>Mã hóa đơn</th>
+                        <th>Ngày đặt hàng</th>
+                        <th>Đơn giá</th>
+                        <th>Trạng thái thanh toán</th>
+                        <th>Trạng thái giao hàng</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="order : ${orders}"
+                            th:data-id="${order.id}"
+                            onclick="redirectToCustomer(this)">
+                            <td th:text="${order.id}">00001</td>
+                            <td th:text="${order.getFormattedCreateAt}">18:32 01/10/2024</td>
+                            <td th:text="${order.totalCost}">145.000</td>
+                            <td th:text="${order.getFormattedPayStatus}">Đã thanh toán</td>
+                            <td th:text="${order.getFormattedShipStatus}">Đã hoàn tất</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<!--    </form>-->
+</article>
+</body>
+</html>
+<!--            <div class="product__message">
+                <p th:if="${message}" th:text="${message}"></p>
+            </div>-->

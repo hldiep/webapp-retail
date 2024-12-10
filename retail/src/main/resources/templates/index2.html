@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/comp-header}">
+<head>
+    <title>Fruit shop</title>
+    <link th:href = "@{/css/home.css}" rel = "stylesheet">
+</head>
+<body>
+<article layout:fragment ="content">
+    <div>a</div>
+    <h1>Ảnh từ Firebase Storage</h1>
+    <img th:src="'data:image/png;charset=utf-8;base64,' + ${base64Image}" alt="Image from Firebase Storage">
+    <img th:src="@{https://firebasestorage.googleapis.com/v0/b/retailstorage-5432c.appspot.com/o/logo-web.png?alt=media}" alt="Image from Firebase Storage">
+
+</article>
+</body>
+</html>
+
+

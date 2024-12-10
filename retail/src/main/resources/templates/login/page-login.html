@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/comp-header}">
+<head>
+    <meta charset="UTF-8">
+    <title>Fruit shop</title>
+    <link th:href = "@{/css/login/login.css}" rel = "stylesheet">
+</head>
+<body>
+<article layout:fragment ="content">
+    <div class="login-background">
+        <div class="login-container">
+            <form action="/customer/login" method="post" >
+            <div class="login__header"> <h2>Đăng nhập</h2></div>
+            <div class ="login__input-box">
+                <i class='bx bx-user'></i>
+                <input type ="text" name="username" id="username" placeholder="Nhập email hoặc số điện thoại"> </div>
+            <div class ="login__input-box">
+                <i class='bx bx-lock'></i>
+                <input type ="password" name="password" id="password" placeholder="Nhập mật khẩu"> </div>
+            <div class= "login__option-remember">
+                <input type ="checkbox" name="remember-me" id="remember-me"> Nhớ mật khẩu </div>
+            <div class="login__action">
+                <button type="submit">Đăng nhập</button></div>
+            <div class=" login__link-forgot">
+                <a href ="/forgot-password">Quên mật khẩu?</a> </div>
+            <div class="login__link-register">
+                <a href="/confirm/phone">Chưa có tài khoản? Đăng ký.</a></div>
+            </form>
+        </div>
+    </div>
+</article>
+</body>
+</html>

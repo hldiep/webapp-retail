@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/comp-header}">
+<head>
+    <title>Fruit shop</title>
+    <link th:href = "@{/css/home.css}" rel = "stylesheet">
+</head>
+<body>
+<article layout:fragment ="content">
+    <div class = "body">
+        <div class = "product-category">
+            <div class="product-category-title">
+                <h2>  Danh mục sản phẩm  </h2>
+            </div>
+            <ul>
+                <li> <a href=""> Sản phẩm 1 </a> </li>
+                <li> <a href=""> Sản phẩm 2 </a> </li>
+                <li> <a href=""> Sản phẩm 3 </a> </li>
+            </ul>
+        </div>
+        <div class = "show-product">
+            <h2 class ="show-product-title"> Các mặt hàng </h2>
+            <ul class ="products">
+                <th:block th:each = "quantity : ${#numbers.sequence(0, 4)}">
+                    <li>
+                        <div class ="product">
+                            <a href=""><img src="" alt="Image"></a> <br>
+                            <a href="">Product name</a> <br>
+                            <a herf="">Price:</a>
+                        </div>
+                    </li>
+                </th:block>
+            </ul>
+        </div>
+    </div>
+    <h1>Done</h1>
+</article>
+</body>
+</html>

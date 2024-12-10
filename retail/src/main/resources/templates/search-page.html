@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vn" xmlns:th="http://www.thymeleaf.com" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/comp-header}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/search-page.css}" rel="stylesheet">
+</head>
+<body>
+<article layout:fragment="content">
+    <div class="container">
+        <div class="filter">
+            <div class="tieu-de">Bộ lọc tìm kiếm</div>
+            <div class="brand">
+                <div class="tieu-de">Brand</div>
+                <form id="brand-filter-form" method="get" action="/search_ml">
+                    <input type="hidden" name="txtSearch" th:value="${query}" />
+                    <input type="hidden" name="sortOrder" th:value="${sortOrder}" />
+                    <input type="hidden" name="minPrice" th:value="${minPrice}" />
+                    <input type="hidden" name="maxPrice" th:value="${maxPrice}" />
+
+                    <!-- Lặp qua các thương hiệu -->
+                    <th:block th:each="brand : ${brands}">
+                        <label>
+                            <input type="checkbox" name="brandIds" th:value="${brand.id}"
+                                   th:checked="${selectedBrandIds != null and selectedBrandIds.contains(brand.id)}" />
+                            <span th:text="${brand.name}"></span>
+                        </label>
+                    </th:block>
+
+                    <div class="ap-dung">
+                        <button type="submit">Lọc</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="gia-tien">
+                <div class="tieu-de">Khoảng giá</div>
+                <form id="price-filter-form" method="get" action="/search_ml">
+                    <!-- Giữ các tham số hiện tại -->
+                    <input type="hidden" name="txtSearch" th:value="${query}" />
+                    <input type="hidden" name="sortOrder" th:value="${sortOrder}" />
+                    <input type="hidden" name="brandIds" th:each="brandId : ${selectedBrandIds}" th:value="${brandId}" />
+                    <div class="input-gia">
+                        <div>
+                            <input type="number" id="min-price" name="minPrice" placeholder="Từ" min="0" th:value="${minPrice}">
+                        </div>
+                        <div>-</div>
+                        <div>
+                            <input type="number" id="max-price" name="maxPrice" placeholder="Đến" min="0" th:value="${maxPrice}">
+                        </div>
+                    </div>
+                    <div class="ap-dung">
+                        <button type="submit">Áp dụng</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="main-search">
+            <div class="search-results">Những loại trái cây phù hợp với bạn</div>
+            <div class="sap-xep">
+                <div>Sắp xếp theo</div>
+
+                <div>
+                    <form id="sort-form" action="/search_ml" method="get">
+                        <input type="hidden" name="txtSearch" th:value="${query}" />
+                        <input type="hidden" name="minPrice" th:value="${minPrice}" />
+                        <input type="hidden" name="maxPrice" th:value="${maxPrice}" />
+                        <div class="sort">
+
+                            <select id="price-sort" name="sortOrder" onchange="document.getElementById('sort-form').submit()">
+                                <option value="">Chọn phương thức sắp xếp</option>
+                                <option value="asc" th:selected="${sortOrder == 'asc'}">Từ thấp đến cao</option>
+                                <option value="desc" th:selected="${sortOrder == 'desc'}">Từ cao đến thấp</option>
+                                <option value="name" th:selected="${sortOrder == 'name'}">Theo tên</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="listProduct">
+                <th:block th:if="${products.isEmpty()}">
+                    <p>Không có sản phẩm nào phù hợp với tìm kiếm của bạn.</p>
+                </th:block>
+                <th:block th:unless="${products.isEmpty()}">
+                    <ul class="products">
+                        <th:block th:each="product : ${products}">
+                            <li>
+                                <div class="product">
+                                    <a th:href="@{/detail(id=${product.id})}">
+                                        <img th:src="'https://firebasestorage.googleapis.com/v0/b/retailstorage-5432c.appspot.com/o/'+${product.id.replace(' ', '')}+'.png?alt=media'" th:alt="${product.id}" alt="Image" />
+                                    </a>
+                                    <br />
+                                    <a th:href="@{/detail(id=${product.id})}" th:text="${product.name}" class="product-name">Product name</a>
+                                    <br />
+                                    <span th:text="${#numbers.formatInteger(product.price, 0) + ' VND'}" class="product-price">200.000 VND</span>
+                                </div>
+                            </li>
+                        </th:block>
+                    </ul>
+                </th:block>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('min-price').addEventListener('keydown', function (e) {
+            if (!isAllowedKey(e)) {
+                e.preventDefault();
+            }
+        });
+
+        document.getElementById('max-price').addEventListener('keydown', function (e) {
+            if (!isAllowedKey(e)) {
+                e.preventDefault();
+            }
+        });
+
+        document.getElementById('min-price').addEventListener('input', function (e) {
+            const value = e.target.value;
+            e.target.value = value.replace(/[^0-9]/g, '');
+        });
+
+        document.getElementById('max-price').addEventListener('input', function (e) {
+            const value = e.target.value;
+            e.target.value = value.replace(/[^0-9]/g, '');
+        });
+
+        function isAllowedKey(e) {
+            // Cho phép các phím số và các phím điều khiển
+            const allowedKeys = ['Backspace', 'ArrowLeft', 'ArrowRight', 'Delete', 'Tab'];
+            const isNumberKey = e.key >= '0' && e.key <= '9';
+            return isNumberKey || allowedKeys.includes(e.key);
+        }
+        function applyFilter() {
+            const query = document.getElementById('txtSearch').value;
+            const sortOrder = document.querySelector('input[name="sortOrder"]:checked') ? document.querySelector('input[name="sortOrder"]:checked').value : '';
+            const minPrice = document.getElementById('min-price').value;
+            const maxPrice = document.getElementById('max-price').value;
+
+            // Lấy tất cả các brandIds đã chọn và loại bỏ khoảng trắng thừa
+            const selectedBrandIds = Array.from(document.querySelectorAll('input[name="brandIds"]:checked'))
+                .map(checkbox => checkbox.value.trim()) // Loại bỏ khoảng trắng thừa
+
+            // Tạo URL với các tham số mã hóa
+            let url = "/search_ml?txtSearch=" + encodeURIComponent(query) +
+                      "&sortOrder=" + encodeURIComponent(sortOrder) +
+                      "&minPrice=" + encodeURIComponent(minPrice) +
+                      "&maxPrice=" + encodeURIComponent(maxPrice);
+
+            // Chỉ thêm brandIds vào URL nếu có ít nhất một thương hiệu được chọn
+            if (selectedBrandIds.length > 0) {
+                url += "&brandIds=" + selectedBrandIds.map(id => encodeURIComponent(id)).join("&brandIds=");
+            }
+
+            // Kiểm tra URL sau khi tạo
+            console.log("Generated URL:", url);
+
+            // Gửi yêu cầu đến URL đã tạo
+            window.location.href = url;
+        }
+
+    </script>
+</article>
+
+</body>
+</html>

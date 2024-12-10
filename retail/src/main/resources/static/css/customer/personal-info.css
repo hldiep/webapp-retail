@@ -1,0 +1,173 @@
+.personal-history__background{
+    background-color: #eff3f4;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+height: calc(100vh - var(--header-height));
+}
+
+.personal-history__container{
+    background-color:white;
+    height: 90%;
+    width: 90%;
+    border: 1px solid #e1e9ea;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px 1px #a4b9d54d;
+    font-family: system-ui;
+}
+
+
+.personal-history__header-name{
+    height: 60px;
+    color:#557067;
+    display:flex;
+    align-items:center;
+    margin-left: 15px;
+}
+
+.personal-history__header-tool{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding:5px 30px;
+    box-sizing:border-box;
+}
+.personal-history__header-tool-select select{
+    background-color: white;
+    color: #454545;
+    display:flex;
+    align-items:center;
+    height:30px;
+    padding: 0 5px;
+    box-sizing:border-box;
+    margin-left: 10px;
+    border: 2px solid #535353;
+    border-radius: 5px;
+}
+
+.personal-history__table{
+    padding:10px 30px;
+    box-sizing:border-box;
+    width:100%;
+    max-height: calc(100% - 105px);
+    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.personal-history__table table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing:0;
+    border-radius:3px;
+    border: 1px solid #efefef;
+    /*    box-shadow: 3px 2px 15px 1px #a4b9d54d;*/
+    table-layout: fixed;
+}
+
+.personal-history__table tbody {
+    box-sizing:border-box;
+    display: block;
+    height:58vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.personal-history__table tbody::-webkit-scrollbar {
+    width: var(--table-scroll-width);
+}
+.personal-history__table tbody::-webkit-scrollbar-thumb {
+    background-color: #dfdfdfca;
+    border-radius: 2px;
+}
+.personal-history__table tbody::-webkit-scrollbar-thumb:hover {
+    background-color: #c3c3c3ca;
+}
+
+.personal-history__table thead, .personal-history__table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed; /* Ensure thead and tbody have the same width */
+}
+
+.personal-history__table thead{
+    background-color: #e5e6ec;
+    box-sizing:border-box;
+    padding-right:var(--table-scroll-width);
+}
+
+.personal-history__table th{
+    height:40px;
+    padding: 0 5px;
+}
+
+.personal-history__table td{
+    padding: 5px 5px;
+    align-items:center;
+}
+
+.personal-history__table th, td{
+    text-overflow: ellipsis; /*dấu 3 chấm nếu chữ dài*/
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing:border-box;
+}
+
+.personal-history__table tr{
+    min-height:42px;
+    text-align:center;
+    border-bottom: 1px solid #ddd;/*Không cho xuống dòng*/
+}
+
+.personal-history__table tbody tr:hover{
+    cursor: pointer;
+    background-color:  rgb(151, 211, 181);
+    color:rgb(255, 255, 255);
+    transition-duration: 0.3s;
+}
+.personal-history__header-tool-search{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.personal-history__header-tool-search-input{
+    background-color:#fbfbfb;
+    color: dimgrey;
+    height: 28px;
+    width: 300px;
+    border-radius: 3px;
+    border: 1px solid #cfcfcf;
+    outline: none;
+    padding: 0 10px;
+    box-sizing:border-box;
+    margin-right: -2rem;
+    transition: all ease-in-out .5s;
+}
+
+.personal-history__header-tool-search-input:focus{
+    background-color:#f3f3f3;
+}
+
+.personal-history__header-tool-search-input:hover, .manage__header-tool-search-input:focus{
+    box-shadow: 0 0 1em rgba(0,0,0,.1);
+}
+
+.personal-history__header-tool-search-button{
+    background-color: white;
+    height:25px;
+    width:30px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    border:none;
+    border-radius: 3px;
+}
+
+.personal-history__header-tool-search-button:focus,.manage__header-tool-search-button:hover{
+    background-color: #f6f6f6;
+}
+
+

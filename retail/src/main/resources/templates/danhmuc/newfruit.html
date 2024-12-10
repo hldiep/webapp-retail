@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vn" xmlns:th="http://www.thymeleaf.com" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/comp-header}">
+<head>
+  <meta charset="UTF-8">
+  <title>Trái cây mới</title>
+  <link th:href="@{/css/danhmuc/nutrient.css}" rel="stylesheet">
+</head>
+<body>
+<article layout:fragment="content">
+  <div class="container">
+    <div class="list">
+      <div class="tieu-de">Các loại trái cây mới</div>
+    </div>
+    <div class="main">
+      <div class="listProduct">
+        <ul class="products">
+          <div class="sap-xep">
+            <div>
+              <form th:action="@{/newfruit}" method="get">
+                <div class="sort">
+                  <label for="price-sort">Sắp xếp theo giá: </label>
+                  <select id="price-sort" name="sort" onchange="this.form.submit()">
+                    <option value="">Chọn phương thức sắp xếp</option>
+                    <option value="price-up" th:selected="${sort == 'price-up'}">Từ thấp đến cao</option>
+                    <option value="price-down" th:selected="${sort == 'price-down'}">Từ cao đến thấp</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="product-list-background">
+            <div class="product-list">
+              <th:block th:each="product : ${products}">
+                <div class="product-item">
+                  <a th:href="@{/detail(id=${product.id})}">
+                    <img th:src="'https://firebasestorage.googleapis.com/v0/b/retailstorage-5432c.appspot.com/o/'+${product.id.replace(' ', '')}+'.png?alt=media'" alt="Product Image"/>
+                  </a>
+                  <br/>
+                  <a th:href="@{/detail(id=${product.id})}" th:text="${product.name}" class="product-name">Product Name</a>
+                  <br/>
+                  <span th:text="${#numbers.formatInteger(product.price, 0)} + ' VND'" class="product-price">200.000 VND</span>
+                </div>
+              </th:block>
+            </div>
+          </div>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</article>
+</body>
+</html>

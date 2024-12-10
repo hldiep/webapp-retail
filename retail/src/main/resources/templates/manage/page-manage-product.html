@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/comp-manage-header}">
+<head>
+    <meta charset="UTF-8">
+    <link th:href = "@{/css/manage/manage-table.css}" rel = "stylesheet">
+    <script th:src="@{/js/manage/product.js}"></script>
+    <title>Quản lý sản phẩm</title>
+</head>
+<body>
+<article layout:fragment ="content">
+    <div class="manage__header">
+        <div class="manage__header-name">
+            <h2>Quản lý sản phẩm</h2></div>
+        <div class="manage__header-tool">
+            <div class="manage__header-tool-left">
+                <form id="search-form" class="manage__header-tool-search" onsubmit="submitCombinedForms()">
+                    <label>
+                        <input type="text" name ="search-product" id="search-product" th:value="${searchKeyword}" class="manage__header-tool-search-input" placeholder="Tìm kiếm"></label>
+                    <button class="manage__header-tool-search-button" type="submit"><i class='bx bx-search' ></i></button>
+                </form>
+            </div>
+            <div class="manage__header-tool-right">
+                <div class="manage__header-tool-button">
+                    <form action="/manage/add-product" method ="get">
+                        <button class="manage__header-tool-button-add"><i class='bx bxs-plus-circle' ></i></i></i>Thêm mới</button>
+                    </form></div>
+                <div  class="manage__header-tool-select">
+<!--                    <form action="/manage/product" method ="get">-->
+                        <form id="filter-form">
+                        <label>
+                            <select name="sort-product" id="sort-product" onchange="submitCombinedForms()" class="manage__header-tool-select-sort">
+                                <option value="ID" th:selected="${sortBy == 'ID'}">Mã sản phẩm</option>
+                                <option value="NAME" th:selected="${sortBy == 'NAME'}">Tên sản phẩm</option>
+                                <option value="QUANTITY" th:selected="${sortBy == 'QUANTITY'}">Số lượng sản phẩm</option>
+                                <option value="PRICE" th:selected="${sortBy == 'PRICE'}">Giá sản phẩm</option>
+                                <option value="CREATE" th:selected="${sortBy == 'CREATE'}">Ngày tạo sản phẩm</option>
+                                <option value="UPDATE" th:selected="${sortBy == 'UPDATE'}">Ngày cập nhật sản phẩm</option>
+                            </select>
+                        </label>
+                    </form></div>
+                <div class="manage__header-tool-select">
+                    <form action="" method ="post">
+                        <label>
+                            <select name="fill" onchange="this.form.submit()" class="manage__header-tool-select-fill">
+                                <option value="ALL" selected="selected">Tất cả</option>
+                                <option value="IN-STOCK">Còn hàng</option>
+                                <option value="OUT-STOCK">Hết hàng</option>
+                                <option value="CURRENT">Đang trưng bày</option>
+                                <option value="STOP">Ngừng trưng bày</option>
+                            </select>
+                        </label>
+                    </form></div>
+                </div>
+            </div>
+        </div>
+    <div class="manage__table">
+        <table class="product-table">
+            <thead>
+            <tr>
+                <th>Hình ảnh</th>
+                <th>Mã sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Nhà cung cấp</th>
+                <th>Phân loại</th>
+                <th>Đơn vị</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${products}"
+                    th:data-id="${product.id.replace(' ', '')}"
+                    onclick="redirectToProduct(this)">
+                    <td><img th:src="'https://firebasestorage.googleapis.com/v0/b/retailstorage-5432c.appspot.com/o/'+${product.id.replace(' ', '')}+'.png?alt=media'" th:alt="Ảnh"></td>
+                    <td th:text="${product.id}">SP0001</td>
+                    <td th:text="${product.name}">Trái cây</td>
+                    <td th:text="${product.brand.name}">Nhà cung cấp nông sản ABC Việt Nam</td>
+                    <td th:text="${product.category.name}">Trái cây tươi</td>
+                    <td th:text="${product.unit.name}">Kg</td>
+                    <td th:text="${product.price}">120.000</td>
+                    <td th:text="${product.quantity}">120</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</article>
+</body>
+</html>
+<!--                <tr th:each = "product:${products}"
+                    th:onclick="'window.location.href=\'/manage/view-product/' + @{${product.id.replace(' ', '')}}+ '\''">-->
+<!--
+<th:block th:each = "quantity : ${#numbers.sequence(0, 4)}" th:var="">
+    <tr onclick="window.location.href='/manage/product?id=${acc.userId}'">
+        <td><img src=""alt="Image"></td>
+        <td>0001</td>
+        <td>Trái cây</td>
+        <td>Nhà cung cấp nông sản ABC Việt Nam</td>
+        <td>Trái cây tươi</td>
+        <td>Kg</td>
+        <td>120.000</td>
+        <td>120</td>
+    </tr>
+</th:block>-->

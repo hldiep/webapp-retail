@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="vn" xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/comp-category}">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script th:src="@{/js/page-home.js}"></script>
+    <link th:href="@{/css/page-home.css}" rel="stylesheet">
+</head>
+<body>
+<article layout:fragment="content">
+    <div class="body">
+        <div class="show-product">
+            <div class="dm1 container swiper">
+                <div class="header-container">
+                    <h2 class="show-product-title">Trái cây hot</h2>
+                    <form action="#" method="get">
+                        <div class="sort">
+                            <label for="sort1">Sắp xếp:</label>
+                            <select id="sort1" name="sort1" onchange="this.form.submit()">
+                                <option value="">Chọn phương thức sắp xếp</option>
+                                <option value="price-up">Giá thấp đến cao</option>
+                                <option value="price-down">Giá cao đến thấp</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-item slider-wrapper">
+                    <ul class="products swiper-wrapper">
+                        <th:block th:each="product : ${product1}">
+                            <li class="swiper-slide">
+                                <div class="product">
+                                    <a th:href="@{/detail(id=${product.id})}">
+                                        <img th:src="'https://firebasestorage.googleapis.com/v0/b/retailstorage-5432c.appspot.com/o/'+${product.id.replace(' ', '')}+'.png?alt=media'" th:alt="${product.id}" alt="Image" class="imageId" />
+                                    </a>
+                                    <a th:href="@{/detail(id=${product.id})}" th:text="${product.name}" class="product-name">Product name</a>
+                                    <span th:text="${#numbers.formatInteger(product.price, 0) + ' VND'}" class="product-price">200.000 VND</span>
+                                </div>
+                            </li>
+                        </th:block>
+                    </ul>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-slide-button swiper-button-prev" aria-label="Previous slide"></div>
+                    <div class="swiper-slide-button swiper-button-next" aria-label="Next slide"></div>
+                </div>
+            </div>
+            <div class="dm2 container swiper">
+                <div class="header-container">
+                    <h2 class="show-product-title">Trái cây bán chạy</h2>
+                    <form action="#" method="get">
+                        <div class="sort">
+                            <label for="sort2">Sắp xếp:</label>
+                            <select id="sort2" name="sort2" onchange="this.form.submit()">
+                                <option value="">Chọn phương thức sắp xếp</option>
+                                <option value="price-up">Giá thấp đến cao</option>
+                                <option value="price-down">Giá cao đến thấp</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-item slider-wrapper">
+                    <ul class="products swiper-wrapper">
+                        <th:block th:each="product : ${product2}">
+                            <li class="swiper-slide">
+                                <div class="product">
+                                    <a th:href="@{/detail(id=${product.id})}">
+                                        <img th:src="'https://firebasestorage.googleapis.com/v0/b/retailstorage-5432c.appspot.com/o/'+${product.id.replace(' ', '')}+'.png?alt=media'" th:alt="${product.id}" alt="Image" class="imageId" />
+                                    </a>
+                                    <a th:href="@{/detail(id=${product.id})}" th:text="${product.name}" class="product-name">Product name</a>
+                                    <span th:text="${#numbers.formatInteger(product.price, 0) + ' VND'}" class="product-price">200.000 VND</span>
+                                </div>
+                            </li>
+                        </th:block>
+                    </ul>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-slide-button swiper-button-prev" aria-label="Previous slide"></div>
+                    <div class="swiper-slide-button swiper-button-next" aria-label="Next slide"></div>
+                </div>
+            </div>
+            <div class="dm3 container swiper">
+                <div class="header-container">
+                    <h2 class="show-product-title">Trái cây mới</h2>
+                    <form action="#" method="get">
+                        <div class="sort">
+                            <label for="sort3">Sắp xếp:</label>
+                            <select id="sort3" name="sort3" onchange="this.form.submit()">
+                                <option value="">Chọn phương thức sắp xếp</option>
+                                <option value="price-up">Giá thấp đến cao</option>
+                                <option value="price-down">Giá cao đến thấp</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-item slider-wrapper">
+                    <ul class="products swiper-wrapper">
+                        <th:block th:each="product : ${product3}">
+                            <li class="swiper-slide">
+                                <div class="product">
+                                    <a th:href="@{/detail(id=${product.id})}">
+                                        <img th:src="'https://firebasestorage.googleapis.com/v0/b/retailstorage-5432c.appspot.com/o/'+${product.id.replace(' ', '')}+'.png?alt=media'" th:alt="${product.id}" alt="Image" class="imageId" />
+                                    </a>
+                                    <a th:href="@{/detail(id=${product.id})}" th:text="${product.name}" class="product-name">Product name</a>
+                                    <span th:text="${#numbers.formatInteger(product.price, 0) + ' VND'}" class="product-price">200.000 VND</span>
+                                </div>
+                            </li>
+                        </th:block>
+                    </ul>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-slide-button swiper-button-prev" aria-label="Previous slide"></div>
+                    <div class="swiper-slide-button swiper-button-next" aria-label="Next slide"></div>
+                </div>
+            </div>
+            <div class="dm4 container swiper">
+                <div class="header-container">
+                    <h2 class="show-product-title">Trái cây nội địa</h2>
+                    <form action="#" method="get">
+                        <div class="sort">
+                            <label for="sort4">Sắp xếp:</label>
+                            <select id="sort4" name="sort4" onchange="this.form.submit()">
+                                <option value="">Chọn phương thức sắp xếp</option>
+                                <option value="price-up">Giá thấp đến cao</option>
+                                <option value="price-down">Giá cao đến thấp</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-item slider-wrapper">
+                    <ul class="products swiper-wrapper">
+                        <th:block th:each="product : ${product4}">
+                            <li class="swiper-slide">
+                                <div class="product">
+                                    <a th:href="@{/detail(id=${product.id})}">
+                                        <img th:src="'https://firebasestorage.googleapis.com/v0/b/retailstorage-5432c.appspot.com/o/'+${product.id.replace(' ', '')}+'.png?alt=media'" th:alt="${product.id}" alt="Image" class="imageId" />
+                                    </a>
+                                    <a th:href="@{/detail(id=${product.id})}" th:text="${product.name}" class="product-name">Product name</a>
+                                    <span th:text="${#numbers.formatInteger(product.price, 0) + ' VND'}" class="product-price">200.000 VND</span>
+                                </div>
+                            </li>
+                        </th:block>
+                    </ul>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-slide-button swiper-button-prev" aria-label="Previous slide"></div>
+                    <div class="swiper-slide-button swiper-button-next" aria-label="Next slide"></div>
+                </div>
+            </div>
+            <div class="dm5 container swiper">
+                <div class="header-container">
+                    <h2 class="show-product-title">Trái cây nhập khẩu</h2>
+                    <form action="#" method="get">
+                        <div class="sort">
+                            <label for="sort5">Sắp xếp:</label>
+                            <select id="sort5" name="sort5" onchange="this.form.submit()">
+                                <option value="">Chọn phương thức sắp xếp</option>
+                                <option value="price-up">Giá thấp đến cao</option>
+                                <option value="price-down">Giá cao đến thấp</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-item slider-wrapper">
+                    <ul class="products swiper-wrapper">
+                        <th:block th:each="product : ${product5}">
+                            <li class="swiper-slide">
+                                <div class="product">
+                                    <a th:href="@{/detail(id=${product.id})}">
+                                        <img th:src="'https://firebasestorage.googleapis.com/v0/b/retailstorage-5432c.appspot.com/o/'+${product.id.replace(' ', '')}+'.png?alt=media'" th:alt="${product.id}" alt="Image" class="imageId" />
+                                    </a>
+                                    <a th:href="@{/detail(id=${product.id})}" th:text="${product.name}" class="product-name">Product name</a>
+                                    <span th:text="${#numbers.formatInteger(product.price, 0) + ' VND'}" class="product-price">200.000 VND</span>
+                                </div>
+                            </li>
+                        </th:block>
+                    </ul>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-slide-button swiper-button-prev" aria-label="Previous slide"></div>
+                    <div class="swiper-slide-button swiper-button-next" aria-label="Next slide"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.btn-add-to-cart').click(function(event) {
+                event.preventDefault();
+                var url = $(this).attr('href');
+
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    success: function(response) {
+                        showNotification("Thêm vào giỏ thành công!", 3000);
+                    },
+                    error: function(error) {
+                        showNotification("Có lỗi xảy ra. Vui lòng thử lại!", 3000);
+                    }
+                });
+            });
+
+            function showNotification(message, duration) {
+                var notification = $('<div class="notification"></div>').text(message);
+                $('body').append(notification);
+                notification.fadeIn();
+
+                setTimeout(function() {
+                    notification.fadeOut(function() {
+                        $(this).remove();
+                    });
+                }, duration);
+            }
+        });
+        const nutrientLink = document.getElementById('nutrient-link');
+        const nutrientList = document.getElementById('nutrient-list');
+
+        nutrientLink.addEventListener('mouseover', function() {
+            fetch('/nutrients')
+                .then(response => response.json())
+                .then(data => {
+                    nutrientList.innerHTML = '';
+                    data.forEach(nutrient => {
+                        const li = document.createElement('li');
+                        li.textContent = nutrient.name;
+                        nutrientList.appendChild(li);
+                    });
+                    nutrientList.classList.remove('hidden');
+                })
+                .catch(error => console.error('Error fetching nutrients:', error));
+        });
+
+        nutrientLink.addEventListener('mouseout', function() {
+            nutrientList.classList.add('hidden');
+        });
+    </script>
+</article>
+</body>
+</html>

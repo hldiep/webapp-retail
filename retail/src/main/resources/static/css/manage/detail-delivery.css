@@ -1,0 +1,145 @@
+
+.manage__form{
+    height: calc(100% - 70px);
+}
+
+.manage__form-top{
+    background-color:#fbfbfb;
+    width: 100%;
+    border-radius: 10px;
+    padding:10px 20px;
+    box-sizing:border-box;
+    display:flex;
+    justify-content: space-between;
+    align-items:flex-end;
+}
+
+.manage__form-botton{
+
+}
+
+.customer__info{
+/*    background-color:#f4f4f4;*/
+    width:50%;
+    align-items: flex-end;
+    padding:5px 10px;
+    box-sizing:border-box;
+}
+
+.account-name__box{
+    width: 100%;
+    display: flex;
+}
+
+.box-span-title{
+    color:#3c3c3c;
+    margin-bottom:5px;
+    margin-right:10px;
+    font-weight: 500;
+    font-size:16px;
+}
+
+.box-span{
+    color:#454545;
+    outline:none;
+    border:none;
+    box-sizing: border-box;
+    padding: 3px 10px;
+    font-size: 15px;
+}
+.box-span:focus{
+    background-color:#f3f3f3;
+    box-shadow: 0 0 1em rgba(0,0,0,.1);
+}
+.box-span:hover{
+    box-shadow: 0 0 1em rgba(0,0,0,.1);
+}
+
+.account-address__box{
+    width: 100%;
+/*    display: flex;*/
+/*    justify-content:space-between;*/
+}
+
+.account-address__box-span{
+    width: calc(100% - 150px);
+/*    background-color: #efefef;*/
+    color:#454545;
+    outline:none;
+    border:none;
+/*    border-radius:5px;*/
+    box-sizing: border-box;
+    padding: 3px 10px;
+    font-size: 15px;
+}
+.account-address__box-span:focus{
+    background-color:#f3f3f3;
+    box-shadow: 0 0 1em rgba(0,0,0,.1);
+}
+.account-address__box-span:hover{
+    box-shadow: 0 0 1em rgba(0,0,0,.1);
+}
+
+.account__group-box{
+    display:flex;
+    justify-content: space-between;
+    align-items:flex-end;
+    width:100%;
+    margin-bottom: 5px;
+}
+
+.account__group-box-left{
+    width: 38%;
+    min-width:100px;
+}
+
+.account__group-box-right{
+    width: 60%;
+}
+
+
+
+
+
+.product__message{
+    color:#5374af;
+    font-weight:550;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content: space-around;
+}
+.order__info{
+    width:50%;
+/*    display:flex;*/
+    /*    flex-direction: column;*/
+    /*    align-items: flex-end;*/
+
+    padding:5px 10px;
+    box-sizing:border-box;
+    gap: 15px;
+}
+.order__status{
+    display:flex;
+    justify-content:space-between;
+}
+.order__detail-info{
+    display:flex;
+    justify-content:space-between;
+    margin-top:10px;
+}
+.order__header-tool-select{
+    display: flex;
+}
+.order__header-tool-select select{
+    background-color: white;
+    color: #454545;
+    display:flex;
+    align-items:center;
+    height:28px;
+    padding: 0 5px;
+    box-sizing:border-box;
+    margin-left: 10px;
+    border: 2px solid #535353;
+    border-radius: 5px;
+}

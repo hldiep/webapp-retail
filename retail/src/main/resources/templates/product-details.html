@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vn" xmlns:th="http://www.thymeleaf.com" xmlns:layout ="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/comp-header}">
+<head>
+  <meta charset="UTF-8">
+  <title>Chi tiết sản phẩm</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script th:src="@{/js/page-home.js}"></script>
+  <link th:href = "@{/css/product-details.css}" rel = "stylesheet">
+</head>
+<body>
+<article layout:fragment ="content">
+  <div class="body">
+    <div class="container">
+      <!--      <div class="title">CHI TIẾT SẢN PHẨM</div>-->
+      <div class="detail">
+        <div class="image">
+          <img th:src="'https://firebasestorage.googleapis.com/v0/b/retailstorage-5432c.appspot.com/o/'+${product.id.replace(' ', '')}+'.png?alt=media'" th:alt="${product.id}" alt="Product Image">
+        </div>
+        <div class="content">
+          <h4 class="name" th:text="${product.name}">Product Name</h4>
+          <div class="price" th:text="${#numbers.formatInteger(product.price, 0) + ' VND'}">200.000 VND/</div>
+
+          <div class="weight">Đơn vị: <span th:text="${product.unit.name}">Unit</span></div>
+
+          <div class="chon-mua">
+            <div class="quantity-container">
+              <!--              <div class="quantity">Số lượng:-->
+              <!--                <input type="number" value="1" min="1" class="quantity-input">-->
+              <!--              </div>-->
+              <div class="quantity">
+                <div class="quantity-button" id="decrease">-</div>
+                <input type="number" value="1" min="1" class="quantity-input" id="quantity-input">
+                <div class="quantity-button" id="increase">+</div>
+              </div>
+              <div class="stock-info">
+                Còn <span class="stock-count" th:text="${product.quantity}">10</span> sản phẩm
+              </div>
+            </div>
+
+            <div class="buttons">
+              <div class="add-to-cart">
+                <a th:href="@{/customer/gio-hang/add(productId=${product.id}, productName=${product.name}, price=${product.price}, quantity=1)}" class="btn-add-to-cart">
+                  Thêm vào giỏ
+                </a>
+              </div>
+              <button class="buy-now">Mua ngay</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info" th:text="${product.detail}">Product details here...</div>
+      <div class="listProduct container swiper">
+        <div class="header-container">
+          <div class="similar-products">SẢN PHẨM TƯƠNG TỰ</div>
+        </div>
+        <div class="card-item slider-wrapper">
+          <ul class="products swiper-wrapper">
+            <th:block th:each="similarProduct : ${similarProducts}">
+              <li class="swiper-slide">
+                <div class="product">
+                  <a th:href="@{/detail(id=${similarProduct.id})}">
+                    <img th:src="'https://firebasestorage.googleapis.com/v0/b/retailstorage-5432c.appspot.com/o/'+${similarProduct.id.replace(' ', '')}+'.png?alt=media'" th:alt="${similarProduct.id}" alt="Image">
+                  </a>
+                  <br>
+                  <a th:href="@{/detail(id=${similarProduct.id})}" th:text="${similarProduct.name}" class="product-name">Product name</a>
+                  <br>
+                  <span th:text="${#numbers.formatInteger(similarProduct.price, 0) + ' VND'}" class="product-price">200.000 VND</span>
+                </div>
+              </li>
+            </th:block>
+          </ul>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-slide-button swiper-button-prev" aria-label="Previous slide"></div>
+          <div class="swiper-slide-button swiper-button-next" aria-label="Next slide"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+        // Xử lý sự kiện nhấn nút giảm (-) và tăng (+)
+        $('.quantity-button').click(function () {
+            var input = $('#quantity-input');
+            var currentValue = parseInt(input.val());
+
+            // Kiểm tra xem nút được nhấn là tăng hay giảm
+            if ($(this).attr('id') === 'increase') {
+                input.val(currentValue + 1); // Tăng 1 đơn vị
+            } else if ($(this).attr('id') === 'decrease' && currentValue > 1) {
+                input.val(currentValue - 1); // Giảm 1 đơn vị nếu giá trị lớn hơn 1
+            }
+        });
+
+        // Xử lý sự kiện khi nhấn vào nút "Thêm vào giỏ"
+        $('.btn-add-to-cart').click(function (event) {
+            event.preventDefault(); // Ngăn không cho trang chuyển hướng
+            var url = $(this).attr('href');
+            var quantity = $('#quantity-input').val(); // Lấy số lượng từ ô input
+            url = url.replace('quantity=1', 'quantity=' + quantity); // Cập nhật số lượng vào URL
+
+            var input = $('#quantity-input');
+            var stockCount = parseInt($('.stock-count').text());
+            var quantity = parseInt(input.val());
+
+            if (quantity > stockCount) {
+                showNotification("Số lượng vượt quá số lượng tồn kho. Vui lòng chọn lại!", 3000);
+                return;
+            }
+
+            showLoadingNotification("Đang thêm...");
+
+            // Gửi yêu cầu Ajax
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function (response) {
+                    hideLoadingNotification();
+                    showNotification("Thêm vào giỏ thành công!", 3000);
+                },
+                error: function (error) {
+                    hideLoadingNotification();
+                    showNotification("Có lỗi xảy ra. Vui lòng thử lại!", 3000);
+                }
+            });
+        });
+
+        // Hàm hiển thị thông báo
+        function showNotification(message, duration) {
+            var notification = $('<div class="notification"></div>').text(message);
+            $('body').append(notification);
+            notification.fadeIn();
+
+            setTimeout(function () {
+                notification.fadeOut(function () {
+                    $(this).remove();
+                });
+            }, duration);
+        }
+
+        // Hàm hiển thị thông báo đang tải
+        function showLoadingNotification(message) {
+            var loadingNotification = $('<div class="notification loading"></div>').text(message);
+            $('body').append(loadingNotification);
+            loadingNotification.fadeIn();
+        }
+
+        // Hàm ẩn thông báo đang tải
+        function hideLoadingNotification() {
+            $('.notification.loading').fadeOut(function () {
+                $(this).remove();
+            });
+        }
+    });
+  </script>
+</article>
+</body>
+</html>

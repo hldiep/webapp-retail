@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/comp-manage-header}">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link th:href = "@{/css/manage/manage-table.css}" rel = "stylesheet">
+    <link th:href = "@{/css/manage/detail-delivery.css}" rel = "stylesheet">
+    <script th:src="@{/js/manage/detail-delivery.js}"></script>
+    <title>Thêm sản phẩm mới</title>
+</head>
+<body>
+<article layout:fragment ="content">
+    <div class="manage__header">
+        <div class="manage__header-name">
+            <h2>Thông tin đơn đặt hàng - <span th:text="${order.id}" style="font-size:22px;"></span></h2></div>
+    </div>
+    <div class="manage__form-top">
+        <div class="customer__info">
+            <div class="account-name__box">
+                <label class="box-span-title">Họ và tên khách hàng</label>
+                <span class="box-span" th:text="${order.customer.getName}" ></span>
+            </div>
+            <div class="account__group-box">
+                <div class="account__group-box-left">
+                    <label class="box-span-title">Số điện thoại</label>
+                    <span class="box-span" th:text="${order.customer.phone}" ></span>
+                </div>
+                <div class="account__group-box-right">
+                    <label class="box-span-title"> Email</label>
+                    <span class="box-span" th:text="${order.customer.email}" ></span>
+                </div>
+            </div>
+            <div class="account-address__box">
+                <label class="box-span-title">Địa chỉ giao hàng</label>
+                <span class="account-address__box-span" th:text="${order.address}" ></span>
+            </div>
+        </div>
+        <div class="order__info">
+            <div class="order__status">
+                <div class="order__header-tool-select">
+                    <label class="box-span-title">Thanh toán: </label>
+                    <select onchange="updatePayStatus(this)" th:data-id="${order.id}">
+                        <option value="HT" th:selected="${order.payStatus == 'HT'}">Đã thanh toán</option>
+                        <option value="CH" th:selected="${order.payStatus == 'CH'}">Chưa thanh toán</option>
+                    </select>
+                </div>
+                <div class="order__header-tool-select">
+                    <label class="box-span-title">Giao hàng: </label>
+                    <select onchange="updateShipStatus(this)" th:data-id="${order.id}">
+                        <option value="CB" th:selected="${order.shipStatus == 'CB'}">Đang chuẩn bị</option>
+                        <option value="DG" th:selected="${order.shipStatus == 'DG'}">Đang giao hàng</option>
+                        <option value="HT" th:selected="${order.shipStatus == 'HT'}">Đã hoàn tất</option>
+                    </select>
+                </div>
+            </div>
+            <div class="order__detail-info">
+                <div>
+                    <label class="box-span-title">Tổng đơn giá:</label>
+                    <span class="box-span" th:text="${order.totalCost} + ' VNĐ'" ></span>
+                </div>
+                <div>
+                    <label class="box-span-title">Thời gian đặt hàng:</label>
+                    <span class="account-address__box-span" th:text="${order.getFormattedCreateAt}" ></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="manage__form-bottom">
+        <div class="manage__table">
+            <table class="order-item-table">
+                <thead>
+                <tr>
+                    <th>Hình ảnh sản phẩm</th>
+                    <th>Mã sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Đơn giá</th>
+                    <th>Đơn vị</th>
+                    <th>Số lượng</th>
+                    <th>Tổng đơn giá</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${order.items}"
+                    th:data-id="${item.product.id.replace(' ', '')}"
+                    onclick="redirectToProduct(this)">
+                    <td><img th:src="'https://firebasestorage.googleapis.com/v0/b/retailstorage-5432c.appspot.com/o/'+${item.product.id.replace(' ', '')}+'.png?alt=media'" th:alt="Ảnh"></td>
+                    <td th:text="${item.product.id}">SP0001</td>
+                    <td th:text="${item.product.name}">Trái cây</td>
+                    <td th:text="${item.price}">120.000</td>
+                    <td th:text="${item.product.unit.name}">Kg</td>
+                    <td th:text="${item.quantity}">2</td>
+                    <td th:text="${item.quantity*item.price}">240.000</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--    </form>-->
+</article>
+</body>
+</html>

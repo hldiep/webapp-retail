@@ -1,0 +1,7 @@
+Icon: https://boxicons.com/
+Component: https://uiverse.io/
+https://dribbble.com/shots/23726881-SalesSync-Dashboard-Sales-Marketing-Add-Product
+https://myaccount.google.com/u/2/apppasswords
+https://www.baeldung.com/spring-email
+https://stackoverflow.com/questions/40768530/how-to-use-spring-security-to-authenticate-two-different-types-of-users
+Data: https://winmart.vn/

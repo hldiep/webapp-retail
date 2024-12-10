@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/comp-manage-header}">
+<head>
+    <meta charset="UTF-8">
+    <link th:href = "@{/css/manage/manage-table.css}" rel = "stylesheet">
+    <title>Lịch sử mua hàng</title>
+</head>
+<body>
+<article layout:fragment ="content">
+    <div class="manage__header">
+        <div class="manage__header-name">
+            <h2>Danh sách hóa đơn</h2></div>
+            <div class="manage__header-tool">
+                <form action="" method ="get" class="manage__header-tool-search">
+                    <label>
+                        <input type="text" class="manage__header-tool-search-input" placeholder="Tìm kiếm"></label>
+                    <button class="manage__header-tool-search-button"><i class='bx bx-search' ></i></button>
+                </form>
+                <div class="manage__header-tool-select">
+                    <label>
+                        <select name="fill" onchange="this.form.submit()" class="manage__header-tool-select-fill">
+                            <option value="ALL" selected="selected">Tất cả</option>
+                            <option value="CB">Đang chuẩn bị</option>
+                            <option value="GH">Đang giao hàng</option>
+                            <option value="HT">Đã hoàn tất</option></select>
+                    </label>
+                </div>
+            </div>
+        </div>
+    <div class="manage__table">
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>Mã hóa đơn</th>
+                    <th>Tên khách hàng</th>
+                    <th>Số điện thoại</th>
+                    <th>Ngày đặt hàng</th>
+                    <th>Đơn giá</th>
+                    <th>Thanh toán</th>
+                    <th>Trạng thái giao hàng</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}"
+                th:data-id="${order.id}"
+                onclick="redirectToCustomer(this)">
+                <td th:text="${order.id}">00001</td>
+                <td th:text="${order.customer.lastName +' '+order.customer.firstName}">100001</td>
+                <td th:text="${order.customer.phone}">0123456789</td>
+                <td th:text="${order.getFormattedCreateAt}">18:32 01/10/2024</td>
+                <td th:text="${order.totalCost}">145.000</td>
+                <td th:text="${order.getFormattedPayStatus}">Đã thanh toán</td>
+                <td th:text="${order.getFormattedShipStatus}">Đã hoàn tất</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</article>
+
+</body>
+</html>
+<!--                <th:block th:each = "quantity : ${#numbers.sequence(0, 4)}">
+                    <tr onclick="window.location.href='/manage-bill?id=${acc.userId}'">
+                        <td>100001</td>
+                        <td>KH00001</td>
+                        <td>8</td>
+                        <td>18:32 01/10/2024</td>
+                        <td>145.000</td>
+                        <td>Đã hoàn tất</td>
+                    </tr>
+                </th:block>-->

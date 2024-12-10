@@ -1,0 +1,109 @@
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="vn" xmlns:th="http://www.thymeleaf.com" xmlns:layout ="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/comp-header}">
+<head>
+    <meta charset="UTF-8">
+    <title>Giỏ hàng</title>
+</head>
+
+<body>
+<article layout:fragment ="content">
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    <section class="shoping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th class="shoping__product">Sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Tổng tiền</th>
+                                <th>Hành động</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:if="${#lists.isEmpty(cartItems)}">
+                                <td colspan="5">Giỏ hàng của bạn hiện đang rỗng.</td>
+                            </tr>
+                            <tr th:each="item : ${cartItems}" th:attr="data-product-id=${item.productId}">
+                                <td class="shoping__cart__item">
+                                    <a th:href="@{/detail(id=${item.productId})}">
+                                        <img th:src="'https://firebasestorage.googleapis.com/v0/b/retailstorage-5432c.appspot.com/o/'+${item.productId.replace(' ', '')}+'.png?alt=media'" th:alt="${item.productId}" alt="Product Image" class="imageId" />
+
+                                    </a>
+                                    <a th:href="@{/detail(id=${item.productId})}"><h5 th:text="${item.name}"></h5></a>
+
+                                </td>
+                                <td th:id="'price-' + ${item.productId}" class="shoping__cart__price"
+                                    th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')} + ' VND'"></td>
+                                <td class="shoping__cart__quantity">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <span class="dec qtybtn" th:attr="data-product-id=${item.productId}">-</span>
+                                            <input type="text" th:value="${item.quantity}" data-product-id="${item.productId}">
+                                            <span class="inc qtybtn" th:attr="data-product-id=${item.productId}">+</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td th:id="'total-' + ${item.productId}" class="shoping__cart__total"
+                                    th:text="${#numbers.formatDecimal(item.price * item.quantity, 0, 'COMMA', 0, 'POINT')} + ' VND'"></td>
+                                <td class="shoping__cart__item__close">
+                                    <a th:href="@{/customer/gio-hang/remove(productId=${item.productId})}" class="icon_close">Xóa</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__btns">
+                        <a href="/home" class="primary-btn cart-btn">Quay lại trang chi tiết</a>
+                        <a href="#" class="primary-btn cart-btn cart-btn-right" id="update-cart-button">
+                            <span class="icon_loading"></span>Cập nhật giỏ hàng</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__checkout">
+                        <h5>Tổng giá trị giỏ</h5>
+                        <ul>
+                            <li>Thanh tiền trước khi áp mã <span id="grand-total" th:text="${#numbers.formatDecimal(grandTotal, 1, 'DEFAULT', 0, 'DEFAULT')} + ' VND'"></span></li>
+                            <li>Tổng cộng <span id="grand-total-final" th:text="${#numbers.formatDecimal(grandTotal, 1, 'DEFAULT', 0, 'DEFAULT')} + ' VND'"></span></li>
+                        </ul>
+                        <a href="#" class="primary-btn" id="checkout-button">TIẾN HÀNH THANH TOÁN</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shoping Cart Section End -->
+
+
+    <!-- Js Plugins -->
+    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/js/jquery.nice-select.min.js}"></script>
+    <script th:src="@{/js/jquery-ui.min.js}"></script>
+    <script th:src="@{/js/jquery.slicknav.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/mixitup.min.js}"></script>
+    <script th:src="@{/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+
+    <link th:href = "@{/css/font-awesome.min.css}" rel = "stylesheet">
+    <link th:href = "@{/css/elegant-icons.css}" rel = "stylesheet">
+    <link th:href = "@{/css/nice-select.css}" rel = "stylesheet">
+    <link th:href = "@{/css/jquery-ui.min.css}" rel = "stylesheet">
+    <link th:href = "@{/css/slicknav.min.css}" rel = "stylesheet">
+    <link th:href = "@{/css/style.css}" rel = "stylesheet">
+</article>
+</body>
+
+</html>

@@ -1,0 +1,429 @@
+:root {
+    --table-scroll-width:10px;
+/* Variables for the product table */
+    --image-col-min-width: 65px;
+    --image-col-width: 10%;
+    --product-id-col-width: 10%;
+    --product-name-col-width: 18%;
+    --supplier-col-width: 24%;
+    --category-col-width: 12%;
+    --unit-col-width: 6%;
+    --price-col-width: 8%;
+    --quantity-col-width: 8%;
+
+    /* Variables for the invoice table */
+    --invoice-id-col-width: 10%;
+    --customer-name-col-width: 22%;
+    --customer-phone-col-width: 15%;
+    --order-date-col-width: 15%;
+    --total-cost-col-width: 10%;
+    --payment-status-col-width: 15%;
+    --shipping-status-col-width: 15%;
+
+    /* Variables for the customer table */
+/*    --customer-id-col-width: 8%;*/
+    --customer-name-col-width: 18%;
+    --customer-phone-col-width: 10%;
+    --customer-email-col-width: 15%;
+    --customer-address-col-width: 29%;
+    --customer-gender-col-width: 8%;
+    --customer-create-col-width: 15%;
+
+    /* Variables for the order item table */
+/*    --image-col-min-width: 65px;*/
+/*    --image-col-width: 10%;*/
+/*    --product-id-col-width: 10%;*/
+/*    --product-name-col-width: 18%;*/
+/*    --unit-col-width: 6%;*/
+/*    --price-col-width: 8%;*/
+/*    --quantity-col-width: 8%;*/
+/*    --price-col-width: 8%;*/
+}
+
+.manage__header-name{
+    height: 60px;
+    color:#556370;
+    display:flex;
+    align-items:center;
+    margin-left: 15px;
+
+}
+
+.manage__header-tool{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding:5px 20px;
+    box-sizing:border-box;
+}
+
+.manage__header-tool-right{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.manage__header-tool-search{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.manage__header-tool-search-input{
+    background-color:#fbfbfb;
+    color: dimgrey;
+    height: 28px;
+    width: 300px;
+    border-radius: 3px;
+    border: 1px solid #cfcfcf;
+    outline: none;
+    padding: 0 10px;
+    box-sizing:border-box;
+    margin-right: -2rem;
+    transition: all ease-in-out .5s;
+}
+
+.manage__header-tool-search-input:focus{
+    background-color:#f3f3f3;
+}
+
+.manage__header-tool-search-input:hover, .manage__header-tool-search-input:focus{
+    box-shadow: 0 0 1em rgba(0,0,0,.1);
+}
+
+.manage__header-tool-search-button{
+    background-color: white;
+    height:25px;
+    width:30px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    border:none;
+    border-radius: 3px;
+}
+
+.manage__header-tool-search-button:focus,.manage__header-tool-search-button:hover{
+    background-color: #f6f6f6;
+}
+.manage__header-tool-button{
+    margin-left: 10px;
+}
+
+.manage__header-tool-button-add{
+    background-color: white;
+    color: #454545;
+    display:flex;
+    align-items:center;
+    padding: 0 5px;
+    box-sizing:border-box;
+    border: 2px solid #535353;
+    min-width:100px;
+    height:30px;
+    border-radius: 5px;
+
+}
+
+.manage__header-tool-button-add:hover{
+    background-color:#f3f3f3;
+}
+
+.manage__header-tool-button-add i{
+    margin-right:5px;
+    color:#595555;
+}
+.manage__header-tool-select{
+    display: flex;
+}
+.manage__header-tool-select select{
+    background-color: white;
+    color: #454545;
+    display:flex;
+    align-items:center;
+    height:30px;
+    padding: 0 5px;
+    box-sizing:border-box;
+    margin-left: 10px;
+    border: 2px solid #535353;
+    border-radius: 5px;
+}
+
+.manage__header-tool-sort{}
+
+.manage__table{
+    padding:10px 20px;
+    box-sizing:border-box;
+    width:100%;
+    max-height: calc(100% - 100px);
+    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.manage__table table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing:0;
+    border-radius:3px;
+    border: 1px solid #efefef;
+    box-shadow: 3px 2px 15px 1px #a4b9d54d;
+    table-layout: fixed;
+}
+
+.manage__table tbody {
+    box-sizing:border-box;
+    display: block;
+    height:63vh;
+/*    max-height: 63vh;*/
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.manage__table tbody::-webkit-scrollbar {
+    width: var(--table-scroll-width);
+}
+
+.manage__table tbody::-webkit-scrollbar-thumb {
+    background-color: #dfdfdfca;
+    border-radius: 2px;
+}
+
+.manage__table tbody::-webkit-scrollbar-thumb:hover {
+    background-color: #c3c3c3ca;
+}
+
+.manage__table thead, .manage__table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed; /* Ensure thead and tbody have the same width */
+}
+
+.manage__table thead{
+    background-color: #e5e6ec;
+    box-sizing:border-box;
+    padding-right:var(--table-scroll-width);
+}
+
+.manage__table th{
+    height:40px;
+    padding: 0 5px;
+}
+
+.manage__table td{
+    padding: 5px 5px;
+    align-items:center;
+}
+
+.manage__table th, td{
+    text-overflow: ellipsis; /*dấu 3 chấm nếu chữ dài*/
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing:border-box;
+}
+.manage__table td select{
+    border:none;
+    outline:none;
+    text-align:right;
+    cursor:pointer;
+}
+.manage__table tr{
+    min-height:40px;
+    text-align:center;
+    border-bottom: 1px solid #ddd;/*Không cho xuống dòng*/
+}
+
+.manage__table tbody tr:hover{
+    cursor: pointer;
+    background-color:  rgb(151, 193, 211);
+    color:rgb(255, 255, 255);
+    transition-duration: 0.3s;
+}
+
+.manage__table img{
+    width:60px;
+    height:60px;
+}
+
+
+.product-table th:nth-child(1), .product-table td:nth-child(1) {
+    width: var(--image-col-width);
+}
+
+.product-table th:nth-child(2), .product-table td:nth-child(2) {
+    width: var(--product-id-col-width);
+}
+
+.product-table th:nth-child(3), .product-table td:nth-child(3) {
+    width: var(--product-name-col-width);
+}
+.product-table td:nth-child(3) {
+    white-space:normal;
+}
+
+.product-table th:nth-child(4), .product-table td:nth-child(4) {
+    width: var(--supplier-col-width);
+}
+
+.product-table td:nth-child(4) {
+    white-space:normal;
+
+}
+
+.product-table th:nth-child(5), .product-table td:nth-child(5) {
+    width: var(--category-col-width);
+}
+
+.product-table th:nth-child(6), .product-table td:nth-child(6) {
+    width: var(--unit-col-width);
+}
+
+.product-table th:nth-child(7), .product-table td:nth-child(7) {
+    width: var(--price-col-width);
+}
+
+.product-table th:nth-child(8), .product-table td:nth-child(8) {
+    width: var(--quantity-col-width);
+}
+
+/* Invoice table column widths */
+.invoice-table th:nth-child(1), .invoice-table td:nth-child(1) {
+    width: var(--invoice-id-col-width);
+}
+
+.invoice-table th:nth-child(2), .invoice-table td:nth-child(2) {
+    width: var(--customer-name-col-width); /* Applying the new variable */
+}
+.invoice-table td:nth-child(2) {
+    text-align:left;
+    padding-left:10px;
+    box-sizing:border-box;
+}
+
+.invoice-table th:nth-child(3), .invoice-table td:nth-child(3) {
+    width: var(--customer-phone-col-width);
+}
+
+.invoice-table th:nth-child(4), .invoice-table td:nth-child(4) {
+    width: var(--order-date-col-width);
+}
+
+.invoice-table th:nth-child(5), .invoice-table td:nth-child(5) {
+    width: var(--total-cost-col-width);
+}
+
+.invoice-table th:nth-child(6), .invoice-table td:nth-child(6) {
+    width: var(--payment-status-col-width);
+}
+
+.invoice-table th:nth-child(7), .invoice-table td:nth-child(7) {
+    width: var(--shipping-status-col-width);
+}
+
+/* Customer table column widths */
+/*.customer-table th:nth-child(1), .customer-table td:nth-child(1) {
+    width: var(--customer-id-col-width);
+}*/
+
+.customer-table th:nth-child(1), .customer-table td:nth-child(1) {
+    width: var(--customer-name-col-width);
+}
+.customer-table td:nth-child(1) {
+    text-align:left;
+    padding-left:10px;
+    box-sizing:border-box;
+}
+.customer-table th:nth-child(2), .customer-table td:nth-child(2) {
+    width: var(--customer-phone-col-width);
+}
+
+.customer-table th:nth-child(3), .customer-table td:nth-child(3) {
+    width: var(--customer-email-col-width);
+}
+
+.customer-table th:nth-child(4), .customer-table td:nth-child(4) {
+    width: var(--customer-gender-col-width);
+}
+
+.customer-table th:nth-child(5), .customer-table td:nth-child(5) {
+    width: var(--customer-address-col-width);
+}
+
+.customer-table th:nth-child(6), .customer-table td:nth-child(6) {
+    width: var(--customer-create-col-width);
+}
+
+/*order-item-table*/
+.order-item-table th:nth-child(1), .order-item-table td:nth-child(1) {
+    width: var(--image-col-width);
+}
+
+.order-item-table th:nth-child(2), .order-item-table td:nth-child(2) {
+    width: var(--product-id-col-width);
+}
+
+.order-item-table th:nth-child(3), .order-item-table td:nth-child(3) {
+    width: var(--product-name-col-width);
+}
+.order-item-table th:nth-child(4), .order-item-table td:nth-child(4) {
+    width: var(--price-col-width);
+}
+
+.order-item-table th:nth-child(5), .order-item-table td:nth-child(5) {
+    width: var(--unit-col-width);
+}
+
+.order-item-table th:nth-child(6), .order-item-table td:nth-child(6) {
+    width: var(--quantity-col-width);
+}
+
+.order-item-table th:nth-child(7), .order-item-table td:nth-child(7) {
+    width: var(--price-col-width);
+}
+/*manage-delivery*/
+.manage__header-tool-page{
+    display: flex;
+    flex-direction: column; /* Đặt các thành phần xuống dòng */
+    align-items: flex-end;
+}
+.radio-input input {
+    display: none;
+}
+
+.radio-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+    background-color: #fff;
+    color: #000000;
+    overflow: hidden;
+    margin-top:5px;
+    border: 1px solid #f1f1f1;
+}
+
+.radio-input label {
+    background-color:#dddddd;
+    color: #56565a;
+/*    padding: 1px 1px 1px 1px;*/
+    box-sizing:border-box;
+    cursor: pointer;
+
+    display: flex;
+    font-weight: 500;
+    letter-spacing: -1px;
+    font-size: 13px;
+}
+
+.radio-input span{
+    background-color:#f3f3f3;
+    width:110px;
+    padding:5px 5px;
+    text-align:center;
+    box-sizing:border-box;
+}
+
+
+.radio-input label input:checked + span {
+    color: #fff;
+    background-color: #586d7e;
+}
+

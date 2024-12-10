@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/comp-header}">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link th:href = "@{/css/customer/personal-info.css}" rel = "stylesheet">
+    <title>Thông tin cá nhân</title>
+</head>
+<body>
+<article layout:fragment ="content">
+    <div class="personal-history__background">
+        <div class="personal-history__container">
+            <div class="personal-history__header">
+                <h2>Thông tin cá nhân</h2></div>
+            <div class="personal-info__container">
+                <div class="personal-info__input-box">
+                    <label>Họ và tên:</label>
+                    <input type="hidden" value="Nguyen Van A"></div>
+                <div class="personal-info__input-box">
+                    <label>Số điện thoại:</label>
+                    <input type="hidden" value="0123456789"></div>
+                <div class="personal-info__input-box">
+                    <label>Email:</label>
+                    <input type="hidden" value="nguyenvana1@gmail.com"></div>
+                <div class="personal-info__input-box">
+                    <label>Địa chỉ:</label>
+                    <input type="hidden" value="97 Đ. Man Thiện, Hiệp Phú, Quận 9, Hồ Chí Minh"></div>
+            </div>
+
+        </div>
+    </div>
+</article>
+</body>
+</html>

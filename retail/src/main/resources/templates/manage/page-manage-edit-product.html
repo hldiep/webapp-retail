@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/comp-manage-header}">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link th:href = "@{/css/manage/add-product.css}" rel = "stylesheet">
+    <script th:src="@{/js/manage/edit-product.js}"></script>
+    <title>Cập nhật sản phẩm</title>
+</head>
+<body>
+<article layout:fragment ="content">
+    <div class="manage__header">
+        <div class="manage__header-name">
+            <h2>Cập nhật sản phẩm</h2></div>
+    </div>
+    <form class="manage__form"  th:action="@{/manage/edit-product/{id}(id=${product.id})}" th:object="${product}" method="post" enctype="multipart/form-data">
+        <div class="manage__form-left">
+            <div class="product__image-background">
+                <img id="blah" th:if="${product.id}"
+                     th:src="'https://firebasestorage.googleapis.com/v0/b/retailstorage-5432c.appspot.com/o/'+${product.id.replace(' ', '')}+'.png?alt=media'"
+                      onerror="this.onerror=null; this.src='https://firebasestorage.googleapis.com/v0/b/retailstorage-5432c.appspot.com/o/upload-regular-96.png?alt=media';"
+                      alt="Thêm ảnh"
+                      style="display:block;"></div>
+            <div class="product__image-import">
+                <input type="file"  name="image" accept="image/png" placeholder="Thêm ảnh" onchange="readURL(this);" > </div>
+        </div>
+        <div class="manage__form-right">
+            <div class="product__inline-box">
+                <label class="product__box-title">Tên sản phẩm</label>
+                <input class="product__inline-box-input" type = "text" placeholder="VD: Dâu tây Đà Lạt" autofocus required th:field="*{name}">
+            </div>
+            <div class="product__group-box">
+                <div class="product__group-box-left">
+                    <label class="product__box-title">Nhà cung cấp</label>
+                    <select class="product__inline-box-select" id="brand-select" required th:field="*{brand.id}">
+                        <option value="" disabled selected>Chọn nhà cung cấp</option>
+                        <option th:each="brand:${brands}" th:value="${brand.id}" th:text="${brand.name}" ></option>
+                    </select >
+                </div>
+                <div class="product__group-box-right">
+                    <label class="product__box-title"> Phân loại</label>
+                    <select class="product__inline-box-select" id="category-select" required  th:field="*{category.id}">
+                        <option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}" ></option>
+                    </select >
+                </div>
+            </div>
+            <div class="product__group-box">
+                <div class="product__group-box-price">
+                    <label class="product__box-title">Giá</label>
+                    <input class="product__inline-box-input" type = "text" placeholder="VD: 100.000" required th:field="*{price}">
+                </div>
+                <div class="product__group-box-unit">
+                    <label class="product__box-title">Đơn vị</label>
+                    <select class="product__inline-box-select" id="unit-select" required th:field="*{unit.id}">
+                        <option th:each="unit:${units}" th:value="${unit.id}" th:text="${unit.name}" ></option>
+                    </select >
+                </div>
+                <div class="product__group-box-quantity">
+                    <label class="product__box-title">Số lượng</label>
+                    <input class="product__inline-box-input" type = "number" placeholder="VD: 10" min="0" required th:field="*{quantity}">
+                </div>
+            </div>
+            <div class="product__detail-box">
+                <label class="product__box-title">Mô tả sản phẩm</label>
+                <textarea class="product__box-textarea" type = text placeholder="Nhập mô tả sản phẩm" rows="7" th:field="*{detail}"></textarea>
+            </div>
+            <div class="product__button">
+                <button  class="product__button-update" type="submit" name="action" value="UPDATE">Cập nhật sản phẩm</button>
+                <button class="product__button-reset" type="reset">Khôi phục</button>
+                <button class="product__button-delete" type="submit" name="action" value="DELETE">Xóa sản phẩm</button>
+                <button class="product__button-cancel" type="button" onclick="window.history.back();">Quay lại</button>
+
+            </div>
+            <div class="product__message">
+                <p th:if="${message}" th:text="${message}"></p>
+            </div>
+        </div>
+    </form>
+</article>
+</body>
+</html>

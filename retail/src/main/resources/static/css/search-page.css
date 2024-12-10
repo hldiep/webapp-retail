@@ -1,0 +1,233 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+.container{
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.filter {
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filter .tieu-de {
+    font-size: 18px;
+    margin: 10px;
+    margin-left: 15px;
+}
+
+.filter label {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+    margin-left: 15px;
+}
+
+.filter input[type="checkbox"] {
+    margin-right: 10px;
+}
+.filter label span {
+    word-break: break-word;
+    max-width: 150px;
+}
+.gia-tien {
+    margin-top: 15px;
+}
+.gia-tien input[type="number"] {
+    padding: 5px;
+    width: 100px;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.gia-tien input {
+    margin-bottom: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+.gia-tien input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.gia-tien input::placeholder {
+    color: #aaa;
+}
+.input-gia{
+    display: flex;
+    justify-content: center;
+}
+.ap-dung{
+    padding: 0 15px;
+}
+.ap-dung button{
+    width: 100%;
+    padding: 10px;
+    background-color: #228d5a;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+.ap-dung button:hover {
+    background-color: #3aa572;
+}
+.main-search {
+    padding: 10px;
+    flex: 1;
+    border: 1px solid #ccc;
+}
+.sap-xep {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 30px 20px 0 20px;
+}
+.sap-xep div {
+    margin-right: 10px;
+}
+
+.sap-xep label {
+    margin-right: 5px;
+}
+
+.sap-xep select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.sort-button {
+    background-color: lightgray;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+.sort-button.active {
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+}
+.sort-button:hover {
+  text-decoration: none;
+}
+.listProduct {
+    margin-top: 40px;
+}
+
+.header-container {
+    margin-bottom: 20px;
+}
+
+.similar-products {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.listProduct {
+    margin-top: 20px;
+}
+
+
+.products{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 30px;
+    border-radius: 8px;
+    justify-content: space-around;
+}
+.products li {
+    padding: 0;
+    width: calc(25% - 20px);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.products a{
+    color: black;
+    text-decoration: none;
+    transition: color 0.4s;
+}
+
+.product{
+    width: 200px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.product img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.product-name {
+    font-size: 14px;
+    font-weight: bold;
+    display: block; /* Đảm bảo rằng a là một khối */
+    width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng */
+    white-space: nowrap; /* Ngăn ngắt dòng */
+    overflow: hidden; /* Ẩn phần văn bản tràn */
+    text-overflow: ellipsis;
+    padding: 5px 15px;
+}
+
+.product-price {
+    font-size: 12px;
+    font-weight: 600;
+    color: #006d39;
+    margin-bottom: 5px;
+}
+.product-name, .product-price {
+    display: block;
+    text-align: center;
+}
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+ul{
+    list-style-type: none;
+}
+.search-results{
+    font-weight: 700;
+    justify-content: center;
+    font-size: 300;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 auto;
+}

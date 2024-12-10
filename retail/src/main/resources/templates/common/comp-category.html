@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout ="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link th:href = "@{/css/common/header.css}" rel = "stylesheet">
+    <link th:href = "@{/css/common/manage-menu.css}" rel = "stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Jaro:opsz@6..72&family=Pridi:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=REM:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header th:fragment="header" class="header-background1">
+    <div class = "header__logo">
+        <a href="/home" class="header__logo-image"> <img th:src="'data:image/png;charset=utf-8;base64,' + ${base64Image}" width="50" height="50" alt="Logo"> </a>
+        <a href="/home" class="header__logo-title" >Fruit Shop</a>
+    </div>
+    <div class = "header__search">
+        <form class = "header__search-form" action="/search_ml" method="get">
+            <input name="txtSearch" id="txtSearch" type="text" class ="header__search-input" placeholder="Bạn đang cần tìm sản phẩm nào?">
+            <button  class="header__search-button" type="submit"><i class='bx bx-search' ></i></button></form>
+        <!--        name ="btnSearch"-->
+    </div>
+    <div class ="header__personal">
+        <form action="/customer/gio-hang" method ="get">
+            <button class="header__personal-cart">Giỏ hàng <i class='bx bx-cart'></i></button></form>
+        <form action="/customer/purchase-history" method ="get">
+            <button class="header__personal-user"><i class='bx bx-user'></i></button></form>
+    </div>
+</header>
+<div class="manage__background">
+    <div class="customer__menu">
+        <div class="manage__menu-title">
+            <h2>Danh mục</h2>
+        </div>
+        <div class="customer__menu-list">
+            <ul>
+                <li><a th:href="@{/bestselling}">Sản phẩm bán chạy</a></li>
+                <li><a id="nutrient-link" th:href="@{/nutrient}">Trái cây bổ dưỡng</a></li>
+                <li><a th:href="@{/inland}">Trái cây nội địa</a></li>
+                <li><a th:href="@{/newfruit}">Trái cây mới</a></li>
+            </ul>
+        </div>
+    </div>
+    <article class="manage__container-2" layout:fragment ="content">
+    </article>
+</div>
+</body>
+</html>

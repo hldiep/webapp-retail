@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout ="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link th:href = "@{/css/common/header.css}" rel = "stylesheet">
+    <link th:href = "@{/css/common/manage-menu.css}" rel = "stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Jaro:opsz@6..72&family=Pridi:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header th:fragment="manage-header" class="header-background2">
+        <div class = "header__logo">
+            <a href="/manage/delivery" class="header__logo-image"> <img th:src="'data:image/png;charset=utf-8;base64,' + ${base64Image}" width="50" height="50" alt="Logo"> </a>
+            <a href="/manage/delivery" class="header__logo-title" >Fruit shop</a>
+        </div>
+        <div class ="header__personal">
+            <form id="logoutForm" action="/manage/logout" method="POST"> <button class="header__personal-logout" type="submit"><i class='bx bx-log-out'></i>Đăng xuất</button></form>
+            <form>
+                <button class="header__personal-user"><i class='bx bx-user'></i></button></form>
+        </div>
+    </header>
+    <div class="manage__background">
+        <div class="manage__menu">
+            <div class="manage__menu-title">
+                <h2>Danh mục</h2>
+            </div>
+            <div class="manage__menu-list">
+                <ul>
+                    <li> <a href="/manage/delivery"> <i class='bx bxs-package'></i> Giao hàng </a> </li>
+                    <li> <a href="/manage/product"> <i class='bx bxs-lemon'></i> Sản phẩm </a> </li>
+                    <li> <a href="/manage/customer"> <i class='bx bxs-user-account'></i> Tài khoản </a> </li>
+                    <li> <a href="/manage/bill"> <i class='bx bx-notepad'></i> Hóa đơn </a> </li>
+                    <li> <a href=""> <i class='bx bx-grid-alt'></i></i> Chung </a> </li>
+                </ul>
+            </div>
+        </div>
+        <article class="manage__container" layout:fragment ="content">
+        </article>
+    </div>
+</body>
+</html>

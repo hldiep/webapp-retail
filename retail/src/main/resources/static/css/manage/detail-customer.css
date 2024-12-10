@@ -1,0 +1,146 @@
+
+.manage__form{
+    height: calc(100% - 70px);
+}
+
+.manage__form-top{
+    background-color:#fbfbfb;
+    width: 100%;
+    border-radius: 10px;
+    padding:10px 20px;
+    box-sizing:border-box;
+    display:flex;
+    justify-content: space-between;
+    align-items:flex-end;
+}
+
+.manage__form-botton{
+
+}
+
+.customer__info{
+    background-color:#f4f4f4;
+    width:50%;
+    align-items: flex-end;
+    padding:5px 10px;
+    box-sizing:border-box;
+}
+
+    .account-name__box{
+        width: 100%;
+        display: flex;
+    }
+
+    .account__box-title{
+        color:#3c3c3c;
+        margin-bottom:5px;
+        margin-right:10px;
+        font-weight: 550;
+        font-size:16px;
+    }
+
+    .account-name__box-span{
+        background-color: #efefef;
+        color:#454545;
+        outline:none;
+        border:none;
+        border-radius:5px;
+        box-sizing: border-box;
+        padding: 3px 10px;
+        font-size: 15px;
+    }
+    .account-name__box-span:focus{
+        background-color:#f3f3f3;
+        box-shadow: 0 0 1em rgba(0,0,0,.1);
+    }
+    .account-name__box-span:hover{
+        box-shadow: 0 0 1em rgba(0,0,0,.1);
+    }
+
+    .account__inline-box-span{
+        background-color: #efefef;
+        color:#454545;
+        width: 100%;
+        outline:none;
+        border:none;
+        border-radius:5px;
+        box-sizing: border-box;
+        padding: 3px 10px;
+        font-size: 15px;
+    }
+    .account__inline-box-span:focus{
+        background-color:#f3f3f3;
+        box-shadow: 0 0 1em rgba(0,0,0,.1);
+    }
+    .account__inline-box-span:hover{
+        box-shadow: 0 0 1em rgba(0,0,0,.1);
+    }
+
+    .account-address__box{
+        width: 100%;
+        display: flex;
+        justify-content:space-between;
+    }
+
+    .account-address__box-span{
+        width: calc(100% - 60px);
+        background-color: #efefef;
+        color:#454545;
+        outline:none;
+        border:none;
+        border-radius:5px;
+        box-sizing: border-box;
+        padding: 3px 10px;
+        font-size: 15px;
+    }
+    .account-address__box-span:focus{
+        background-color:#f3f3f3;
+        box-shadow: 0 0 1em rgba(0,0,0,.1);
+    }
+    .account-address__box-span:hover{
+        box-shadow: 0 0 1em rgba(0,0,0,.1);
+    }
+
+    .account__group-box{
+        display:flex;
+        justify-content: space-between;
+        align-items:flex-end;
+        width:100%;
+        margin-bottom: 5px;
+    }
+
+    .account__group-box-left{
+        width: 25%;
+        min-width:100px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .account__group-box-right{
+        width: 68%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+.customer__tool{
+    width:50%;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding:5px 20px;
+    box-sizing:border-box;
+    gap: 15px;
+}
+
+
+.product__message{
+    color:#5374af;
+    font-weight:550;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content: space-around;
+}
